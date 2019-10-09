@@ -29,6 +29,7 @@ $Id: AtomSet.cc,v 1.29 2005/11/09 23:18:24 bashford Exp $
 #include "MEAD/AtomSet.h"
 #include "MEAD/globals.h"
 #include <fstream>
+#include <cstring>
 
 typedef std::list<Atom>::iterator alitr;
 typedef std::list<Atom>::const_iterator calitr;
@@ -95,8 +96,8 @@ void AtomSet::read (const string& filename_string)
       ::error ("readmol: The following line was too long:\n", linebuf, "\n");
 
     // Check for the word "ATOM" at start of line
-    if (!(strncmp (linebuf, "ATOM", 4)==0
-	  || strncmp (linebuf, "HETATM", 6)==0)) continue;
+    if (!(std::strncmp (linebuf, "ATOM", 4)==0
+	  || std::strncmp (linebuf, "HETATM", 6)==0)) continue;
 
     // Read the info for a new atom from the line
     ++atcount;

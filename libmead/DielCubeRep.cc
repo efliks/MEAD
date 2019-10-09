@@ -30,6 +30,7 @@ $Id: DielCubeRep.cc,v 2.6 2004/12/06 17:58:10 bashford Exp $
 #include "MEAD/Bigmem.h"
 #include "MEAD/DielCubeRep.h"
 #include <iostream>
+#include <cstring>
 
 DielCubeRep::DielCubeRep(const CubeLatSpec& cls)
 {
@@ -40,7 +41,7 @@ DielCubeRep::DielCubeRep(const CubeLatSpec& cls)
   rep = new DielCubeRepRep;
   rep->referenceCount = 1;
   rep->eps_array = (float *) big_rigid_malloc((sizeof (float))*ncube);
-  memset ((char *) rep->eps_array, 0, ncube * sizeof (float));
+  std::memset ((char *) rep->eps_array, 0, ncube * sizeof (float));
 }
 
 DielCubeRep::DielCubeRep(const DielCubeRep& dcr)
